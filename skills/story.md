@@ -332,14 +332,27 @@ When the feature writes to the database, the **Then** clause MUST describe durab
 
 #### Section 5: Tasks (for Coder)
 
-```markdown
-### Task 1: [Name] (AC: #1)
+**Tasks MUST cover all layers from Full-Stack Deliverables Checklist.** Group tasks by layer:
 
-- [ ] Create `path/to/file.go`
-- [ ] Create `path/to/file.py`
+```markdown
+### Task 0: Database Migration (AC: #relevant)
+
+- [ ] Create migration file `[path]`
+- [ ] Define new tables/columns
+- [ ] Run migration to verify
+
+### Task 1: Backend API (AC: #1, #2)
+
+- [ ] Create `path/to/file.go` or `path/to/file.py`
 - [ ] Implement [function]
-- [ ] Follow pattern from `path/to/reference.go`
-- [ ] Follow pattern from `path/to/reference.py`
+- [ ] Follow pattern from `path/to/reference`
+
+### Task 2: Frontend Page/Component (AC: #relevant)
+
+- [ ] Create page component `path/to/View.vue`
+- [ ] Register route in router
+- [ ] Create sub-components as needed
+- [ ] Connect to API endpoints
 ```
 
 #### Section 6: Test Requirements (for Tester)
@@ -394,6 +407,12 @@ Location: `tests/e2e/[feature].e2e.ts`
 - [ ] Anti-patterns specific to codebase
 - [ ] Tasks map to AC
 - [ ] Test requirements cover all AC
+- [ ] Full-Stack Deliverables Checklist filled (no empty sections without N/A justification)
+- [ ] Every deliverable maps to at least one Task
+- [ ] Every new DB table/column has existence test in Test Requirements
+- [ ] Every new frontend route has route-load test in Test Requirements
+- [ ] Every new UI element has presence test in Test Requirements
+- [ ] Tasks cover all layers from deliverables
 
 **Code Policy Checks**:
 
@@ -496,6 +515,34 @@ As a [role], I want [action], so that [benefit].
 
 ---
 
+## Full-Stack Deliverables Checklist
+
+> MUST be filled for every story. Mark items as N/A with justification if not applicable.
+
+### Database Layer
+- [ ] New tables: [table names with key columns, or "None"]
+- [ ] Altered tables: [table.column changes, or "None"]
+- [ ] New indexes/constraints: [list, or "None"]
+- [ ] Migration file path: `[e.g., alembic/versions/xxx_description.py]`
+
+### Backend API Layer
+- [ ] New endpoints: [METHOD /path, or "None"]
+- [ ] Modified endpoints: [METHOD /path + what changed, or "None"]
+
+### Frontend Layer
+- [ ] New pages/routes: [route path + page component, or "N/A - backend only"]
+- [ ] New components: [component name + parent page, or "N/A"]
+- [ ] New forms/buttons/dialogs: [label + parent component, or "N/A"]
+- [ ] Modified existing pages: [page + what changes, or "N/A"]
+
+### Integration Points
+- [ ] Frontend -> API: [which component calls which endpoint]
+- [ ] API -> DB: [which endpoint reads/writes which table]
+
+**If any section is N/A, state why.**
+
+---
+
 ## Implementation Guidance
 
 ### [Component] Fields (if new struct)
@@ -547,6 +594,24 @@ FieldName1, FieldName2, FieldName3 (types if non-obvious)
 ---
 
 ## Test Requirements
+
+### Existence / Structural Tests (REQUIRED when Full-Stack Deliverables lists new artifacts)
+
+**DB Schema Tests** (if new tables/columns):
+| Artifact | Test | Expected |
+| --- | --- | --- |
+| table `xxx` | Table exists in DB | Table found with expected columns |
+| column `xxx.yyy` | Column type correct | VARCHAR(20) NOT NULL |
+
+**Frontend Route Tests** (if new pages/routes):
+| Route | Test | Expected |
+| --- | --- | --- |
+| /path/to/page | Page loads without error | HTTP 200, key element visible |
+
+**UI Element Tests** (if new buttons/forms/components):
+| Element | Page | Test | Expected |
+| --- | --- | --- | --- |
+| "Action" button | /page | Element present and clickable | Button exists with correct label |
 
 ### Integration Tests
 

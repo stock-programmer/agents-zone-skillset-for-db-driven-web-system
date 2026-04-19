@@ -69,6 +69,12 @@ Follow this structure (based on project ARCHITECTURE.md):
 4. **Component Architecture** - Layers, directory structure, responsibilities
 5. **Data Flow** - Request/response flow with swimlane diagrams
 6. **Data Architecture** (if applicable) - Domain models, storage, repositories
+6.5. **Full-Stack Layer Map** (if feature touches multiple layers):
+   - DB migrations: new tables (column list + types), altered tables, new constraints/indexes
+   - API endpoints: new/modified endpoints with method, path, request/response summary
+   - Frontend routes: new pages with URL path
+   - Frontend components: new components/forms/buttons/dialogs with parent page
+   - Integration points: frontend -> API -> DB mapping
 7. **External Integrations** (if applicable) - Provider system, clients
 8. **Security Architecture** (if applicable) - Auth, encryption, certificates
 9. **Configuration** - Environment variables, secrets
@@ -214,6 +220,8 @@ Before presenting:
 - [ ] Observability section complete
 - [ ] ASCII diagrams for complex flows
 - [ ] Code examples <10 lines
+- [ ] Full-Stack Layer Map present (DB migrations, API endpoints, frontend routes/components enumerated)
+- [ ] Each user journey traceable through all layers
 
 ### Phase 9: Present & Iterate
 

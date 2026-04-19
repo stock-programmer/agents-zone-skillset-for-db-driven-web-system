@@ -102,6 +102,8 @@ Always update state after each phase transition.
 
 - Follow `skills/story.md`
 - The story must be the single source of truth for tester and coder
+- **The story MUST include a filled "Full-Stack Deliverables Checklist"**
+- **Validate: reject story if checklist is empty or missing**
 - Save to `docs/story-{slug}.md`
 
 ### Phase 5: Tester (TDD Red)
@@ -141,15 +143,17 @@ The tester handoff must include:
 
 ### Phase 9: Browser UAT
 
-Run browser UAT when the story changes user-visible flows.
+Run browser UAT when story's Full-Stack Deliverables Checklist has ANY non-N/A frontend items.
 
-Minimum expectations:
+1. Read checklist's Frontend Layer section
+2. If has non-N/A items -> UAT REQUIRED
+3. If all N/A -> UAT skipped with reason "backend-only"
+
+When UAT is required:
 
 - start the required app services
 - execute Playwright or the repo's browser test path
 - capture the result in the run state
-
-If the story is backend-only, mark UAT as `skipped` with a reason.
 
 ### Phase 10: Final Report
 

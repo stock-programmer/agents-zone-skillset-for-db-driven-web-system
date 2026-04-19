@@ -41,6 +41,11 @@ Ask the user these questions:
 4. **Existing Documentation**: Is there official documentation or specifications to reference?
 5. **Timeline**: Is there a deadline or phased rollout plan?
 6. **Success Criteria**: How will we know this is working correctly?
+7. **System Layers Affected**: Which layers does this feature touch?
+   - Database: New tables? New columns on existing tables? Altered constraints?
+   - Backend API: New endpoints? Modified endpoints?
+   - Frontend UI: New pages/routes? New buttons/forms/components on existing pages?
+   - If unsure, describe the user journey step-by-step: "User clicks X on page Y, system does Z, result appears on page W"
 
 **Step 1.2: Infrastructure Requirements**
 
@@ -100,6 +105,18 @@ For each requirement group:
 - **Request/Response Fields**: Field names and types (from research, not invented)
 - **Behavior**: Expected system behavior
 - **Reference**: Link to official docs or working implementation
+
+**Step 2.2.5: User Journey Decomposition (Full-Stack Features)**
+
+If the feature involves user interaction (not pure backend/infra), decompose EACH user journey into layers:
+
+### User Journey: [Journey Name]
+1. **User Action**: [What the user does]
+2. **Frontend**: [Page/route, component, form/button needed]
+3. **API Call**: [HTTP method + endpoint]
+4. **Backend Logic**: [Service function, business rules]
+5. **Database**: [Tables read/written, new tables/columns needed]
+6. **Response Flow**: [API response -> frontend update -> what user sees]
 
 **MVP-First Structure**:
 
@@ -231,6 +248,7 @@ Before presenting to user, verify:
 - [ ] API compatibility verified (if external integration)
 - [ ] All assumptions researched and documented
 - [ ] Phased approach clearly defined
+- [ ] User journey decomposition covers all layers (UI → API → DB) for interactive features
 
 **Step 4.2: Present PRD**
 
@@ -259,6 +277,7 @@ Use this simplified structure:
 ```
 1. Summary (Problem, Solution, Success Criteria)
 2. Functional Requirements (MVP-first, phased)
+2.5. User Journey Decomposition (for interactive features - layer-by-layer breakdown)
 3. Non-Functional Requirements (SERVICE-SPECIFIC ONLY)
 4. Out of Scope
 5. Testing Strategy

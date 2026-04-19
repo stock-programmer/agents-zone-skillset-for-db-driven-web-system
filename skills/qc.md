@@ -296,6 +296,36 @@ Requirement Mapping:
 - ❌ **FAKE TEST:** Filter test doesn't validate filtering
 - ⚠️ **WEAK TEST:** Response format test incomplete
 
+### Phase 2.5: Full-Stack Coverage Verification
+
+Read story's Full-Stack Deliverables Checklist.
+For EVERY deliverable, verify test coverage AND implementation coverage.
+
+**2.5.1 DB Layer Coverage:**
+- Existence test present for each new table/column
+- Behavioral test present for CRUD operations on new tables
+- Migration file exists at declared path
+- ORM model/schema matches migration
+
+**2.5.2 Frontend Layer Coverage:**
+- Route test present for each new page/route
+- Component/UI element test present for each new component
+- Route registration exists in router config
+- `.vue` file exists for each declared component
+
+**2.5.3 Cross-Layer Integration:**
+- Frontend component calls the correct API endpoint
+- API endpoint reads/writes the correct DB table
+- Full chain: frontend -> API -> DB is complete (no broken links)
+
+Report as Full-Stack Coverage Matrix:
+| Layer | Deliverable | Existence Test | Behavioral Test | Implementation | Status |
+| --- | --- | --- | --- | --- | --- |
+| DB | table `xxx` | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+| API | POST /api/xxx | - | ✅/❌ | ✅/❌ | PASS/FAIL |
+| Frontend | /path route | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+| Frontend | "Action" button | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+
 ### Phase 3: Verify Coder's Deliverables
 
 For **each claim the coder made**, verify it's true.
@@ -829,6 +859,17 @@ type Account struct {
 
 ---
 
+## Section 3.5: Full-Stack Deliverables Coverage
+
+| Layer | Deliverable | Existence Test | Behavioral Test | Implementation | Status |
+| --- | --- | --- | --- | --- | --- |
+| DB | table `xxx` | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+| API | METHOD /path | - | ✅/❌ | ✅/❌ | PASS/FAIL |
+| Frontend | /route | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+| Frontend | "Element" | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+
+---
+
 ## Section 4: Critical Issues Summary
 
 ### False Positives (Claimed Done but Not Done):
@@ -864,6 +905,7 @@ type Account struct {
 - ❌ **2 missing tests** (provider error, response format)
 - ⚠️ Tests run and pass (but some are fake)
 - ✅ Transactional persistence verified from a fresh session for DB-writing operations
+- ✅ Full-Stack Deliverables all have existence tests (DB schema, frontend routes, UI elements)
 
 **Coder Deliverables:**
 
@@ -872,6 +914,7 @@ type Account struct {
 - ❌ **1 missing field** (currency)
 - ✅ Code compiles and runs
 - ✅ Final transaction ownership is explicit for DB-writing flows
+- ✅ All Full-Stack Deliverables implemented (DB migrations, API endpoints, frontend routes/components)
 
 **Overall:**
 

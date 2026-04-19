@@ -76,6 +76,20 @@ Follow the Tasks section in the story:
 - If the runtime uses `autocommit=False` or equivalent unit-of-work semantics, verify where the outer commit happens
 - Do not treat same-session query success as proof that persistence is complete
 
+### Step 2.5: Verify Full-Stack Deliverables Coverage
+
+Before running tests, cross-check against story's Full-Stack Deliverables Checklist:
+
+- [ ] DB Layer: All migrations created and runnable?
+- [ ] Backend Layer: All endpoints implemented?
+- [ ] Frontend Layer: All pages/routes/components created?
+- [ ] Integration: Frontend calls correct API? API uses correct DB tables?
+
+If any checklist item not yet implemented, implement it BEFORE running tests.
+
+Common miss: implementing API handler but forgetting to create DB migration,
+register frontend route, or create Vue component.
+
 ### Step 3: Run Tests
 
 **Run tests using Makefile**:
@@ -158,8 +172,14 @@ make build
 # 5. Lint
 make lint
 
+# 6. DB migrations run successfully
+# [migration_command] upgrade head
+
+# 7. All Full-Stack Deliverables implemented
+# Cross-reference story checklist - every item must have corresponding file
+
 # (前端项目时追加)
-# 6. Vue 组件测试
+# 8. Vue 组件测试
 npm run test:unit
 
 # 7. E2E 浏览器测试

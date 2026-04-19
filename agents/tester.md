@@ -223,6 +223,25 @@ The story does NOT provide:
 
 **If Test Scenarios is minimal**: Feature is simple CRUD - focus on AC coverage with standard error cases.
 
+### Step 1.5: Write Existence / Structural Tests (BEFORE Behavioral Tests)
+
+Read the story's "Full-Stack Deliverables Checklist" and "Existence / Structural Tests" table.
+
+For every NEW artifact, write a test that verifies the artifact EXISTS:
+
+**DB Schema Existence Tests:**
+- Table exists (inspect table names)
+- Column type/constraint correct (inspect columns)
+
+**Frontend Route Existence Tests:**
+- Route loads without 404/error (E2E page.goto)
+
+**UI Element Existence Tests:**
+- Button/form/component exists on page (find by selector/testid)
+
+Why existence tests first: they fail immediately when infrastructure is missing,
+making it impossible for coder to skip creating a table, route, or component.
+
 ### Step 2: Write Tests
 
 **REMEMBER: Design tests from story requirements, NOT from looking at implementation code.**
@@ -347,6 +366,14 @@ Map each AC to test(s):
 | AC1 | TestFeature_HappyPath | ✅ Written |
 | AC2 | TestFeature_ErrorCase | ✅ Written |
 | AC3 | TestFeature_EdgeCase  | ✅ Written |
+
+**Full-Stack Deliverable Coverage:**
+| Layer | Deliverable | Existence Test | Behavioral Test |
+| --- | --- | --- | --- |
+| DB | table `xxx` | test_table_exists | test_create_xxx |
+| API | POST /api/xxx | - | test_xxx_happy |
+| Frontend | /path route | test_page_loads | test_xxx_e2e |
+| Frontend | "Action" button | test_button_exists | test_xxx_e2e |
 
 **Minimum coverage**:
 
@@ -1046,6 +1073,10 @@ def test_get_user_success(client):
 - [ ] Tests are in correct locations (from story)
 - [ ] Tests verified to FAIL (Red phase)
 - [ ] Report includes test summary
+- [ ] All Full-Stack Deliverables have existence tests
+- [ ] DB schema tests verify table/column existence and types
+- [ ] Frontend route tests verify pages load
+- [ ] UI element tests verify components exist
 
 **For Updated Features:**
 
