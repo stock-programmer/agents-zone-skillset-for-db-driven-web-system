@@ -317,14 +317,16 @@ For EVERY deliverable, verify test coverage AND implementation coverage.
 - Frontend component calls the correct API endpoint
 - API endpoint reads/writes the correct DB table
 - Full chain: frontend -> API -> DB is complete (no broken links)
+- **Chain behavioral test exists**: E2E test exercises complete user journey
+  (user action → API call → DB write → response → UI re-render)
 
 Report as Full-Stack Coverage Matrix:
-| Layer | Deliverable | Existence Test | Behavioral Test | Implementation | Status |
-| --- | --- | --- | --- | --- | --- |
-| DB | table `xxx` | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
-| API | POST /api/xxx | - | ✅/❌ | ✅/❌ | PASS/FAIL |
-| Frontend | /path route | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
-| Frontend | "Action" button | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+| Layer | Deliverable | Existence Test | Behavioral Test | Chain Test | Implementation | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| DB | table `xxx` | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+| API | POST /api/xxx | - | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+| Frontend | /path route | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+| Frontend | "Action" button | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
 
 ### Phase 3: Verify Coder's Deliverables
 
@@ -861,12 +863,12 @@ type Account struct {
 
 ## Section 3.5: Full-Stack Deliverables Coverage
 
-| Layer | Deliverable | Existence Test | Behavioral Test | Implementation | Status |
-| --- | --- | --- | --- | --- | --- |
-| DB | table `xxx` | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
-| API | METHOD /path | - | ✅/❌ | ✅/❌ | PASS/FAIL |
-| Frontend | /route | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
-| Frontend | "Element" | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+| Layer | Deliverable | Existence Test | Behavioral Test | Chain Test | Implementation | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| DB | table `xxx` | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+| API | METHOD /path | - | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+| Frontend | /route | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
+| Frontend | "Element" | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ | PASS/FAIL |
 
 ---
 
@@ -906,6 +908,7 @@ type Account struct {
 - ⚠️ Tests run and pass (but some are fake)
 - ✅ Transactional persistence verified from a fresh session for DB-writing operations
 - ✅ Full-Stack Deliverables all have existence tests (DB schema, frontend routes, UI elements)
+- ✅ Full-stack chain tests verify complete user journeys (Frontend→API→DB→Response→UI)
 
 **Coder Deliverables:**
 

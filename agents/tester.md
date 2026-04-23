@@ -242,6 +242,17 @@ For every NEW artifact, write a test that verifies the artifact EXISTS:
 Why existence tests first: they fail immediately when infrastructure is missing,
 making it impossible for coder to skip creating a table, route, or component.
 
+**Full-Stack Chain Tests (when deliverables span Frontend + API + DB):**
+
+After existence tests, write E2E tests that verify the COMPLETE user journey chain:
+1. Navigate to page, perform user action (click button, submit form)
+2. Verify DOM updates (loading state, optimistic UI)
+3. Verify API request was sent (intercept network call or check server-side)
+4. Verify DB state changed (query DB directly or via API GET)
+5. Verify frontend re-renders with new data from API response
+
+These tests ensure the layers are not just present but actually wired together correctly.
+
 ### Step 2: Write Tests
 
 **REMEMBER: Design tests from story requirements, NOT from looking at implementation code.**
@@ -368,12 +379,12 @@ Map each AC to test(s):
 | AC3 | TestFeature_EdgeCase  | ✅ Written |
 
 **Full-Stack Deliverable Coverage:**
-| Layer | Deliverable | Existence Test | Behavioral Test |
-| --- | --- | --- | --- |
-| DB | table `xxx` | test_table_exists | test_create_xxx |
-| API | POST /api/xxx | - | test_xxx_happy |
-| Frontend | /path route | test_page_loads | test_xxx_e2e |
-| Frontend | "Action" button | test_button_exists | test_xxx_e2e |
+| Layer | Deliverable | Existence Test | Behavioral Test | Chain Test |
+| --- | --- | --- | --- | --- |
+| DB | table `xxx` | test_table_exists | test_create_xxx | test_journey_e2e |
+| API | POST /api/xxx | - | test_xxx_happy | test_journey_e2e |
+| Frontend | /path route | test_page_loads | test_xxx_e2e | test_journey_e2e |
+| Frontend | "Action" button | test_button_exists | test_xxx_e2e | test_journey_e2e |
 
 **Minimum coverage**:
 
@@ -1077,6 +1088,7 @@ def test_get_user_success(client):
 - [ ] DB schema tests verify table/column existence and types
 - [ ] Frontend route tests verify pages load
 - [ ] UI element tests verify components exist
+- [ ] Full-stack chain tests cover every user journey that spans Frontend+API+DB
 
 **For Updated Features:**
 

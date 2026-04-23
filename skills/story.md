@@ -412,6 +412,7 @@ Location: `tests/e2e/[feature].e2e.ts`
 - [ ] Every new DB table/column has existence test in Test Requirements
 - [ ] Every new frontend route has route-load test in Test Requirements
 - [ ] Every new UI element has presence test in Test Requirements
+- [ ] Every user journey spanning Frontend+API+DB has a full-stack chain test in Test Requirements
 - [ ] Tasks cover all layers from deliverables
 
 **Code Policy Checks**:
@@ -612,6 +613,19 @@ FieldName1, FieldName2, FieldName3 (types if non-obvious)
 | Element | Page | Test | Expected |
 | --- | --- | --- | --- |
 | "Action" button | /page | Element present and clickable | Button exists with correct label |
+
+### Full-Stack Chain Tests (REQUIRED when deliverables span Frontend + API + DB)
+
+For each user journey that crosses all layers, define an E2E test that verifies the COMPLETE chain:
+
+| User Journey | Frontend Action | Expected API Call | Expected DB Change | Expected UI Update |
+| --- | --- | --- | --- | --- |
+| [journey name] | [click/input on page] | [METHOD /endpoint with key params] | [table.column = expected value] | [DOM element shows updated data] |
+
+Example:
+| User Journey | Frontend Action | Expected API Call | Expected DB Change | Expected UI Update |
+| --- | --- | --- | --- | --- |
+| Create purchase order | Fill form + click "Submit" on /purchase/new | POST /api/purchase-orders {items, supplier} | purchase_orders row created, status='draft' | Redirect to /purchase/:id, shows order details |
 
 ### Integration Tests
 
